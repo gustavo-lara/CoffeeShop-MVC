@@ -13,8 +13,8 @@ namespace CoffeeShop.Data
         public DbSet<CoffeeShop.Models.Cliente> Cliente { get; set; } = default!;
         public DbSet<CoffeeShop.Models.Fornecedor> Fornecedor { get; set; } = default!;
         public DbSet<CoffeeShop.Models.Produto> Produto { get; set; } = default!;
-        public DbSet<CoffeeShop.Models.Venda> Venda { get; set; } = default!;
-        public DbSet<CoffeeShop.Models.VendaProduto> VendaProduto { get; set; } = default!;
-        public DbSet<CoffeeShop.Models.ItemVenda> ItemVenda { get; set; } = default!;
+        public DbSet<CoffeeShop.Models.Pedido> Pedido { get; set; } = default!;
+        public DbSet<CoffeeShop.Models.ItemPedido> ItemPedido { get; set; } = default!;
+
     }
 }

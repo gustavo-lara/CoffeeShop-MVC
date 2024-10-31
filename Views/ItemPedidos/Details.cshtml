@@ -1,4 +1,4 @@
-﻿@model CoffeeShop.Models.ItemVenda
+﻿@model CoffeeShop.Models.ItemPedido
 
 @{
     ViewData["Title"] = "Details";
@@ -7,20 +7,26 @@
 <h1>Details</h1>
 
 <div>
-    <h4>ItemVenda</h4>
+    <h4>ItemPedido</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Produto)
+            @Html.DisplayNameFor(model => model.VendaId)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Produto.Id)
+            @Html.DisplayFor(model => model.VendaId)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Quantidade)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Quantidade)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Produto)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Produto.Id)
         </dd>
     </dl>
 </div>

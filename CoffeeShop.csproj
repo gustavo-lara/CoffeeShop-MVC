@@ -8,8 +8,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Vendas4\**" />
+    <Content Remove="Views\Vendas4\**" />
+    <EmbeddedResource Remove="Views\Vendas4\**" />
+    <None Remove="Views\Vendas4\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\ItemVendasController.cs" />
     <Compile Remove="Controllers\VendaProdutosController.cs" />
+    <Compile Remove="Controllers\Vendas1Controller.cs" />
+    <Compile Remove="Controllers\Vendas2Controller.cs" />
+    <Compile Remove="Controllers\Vendas3Controller.cs" />
+    <Compile Remove="Controllers\Vendas4Controller.cs" />
     <Compile Remove="Controllers\VendasController.cs" />
+    <Compile Remove="Models\Class.cs" />
+    <Compile Remove="Models\ItemVenda.cs" />
+    <Compile Remove="Models\Venda.cs" />
+    <Compile Remove="Models\VendaProduto.cs" />
   </ItemGroup>
 
   <ItemGroup>
