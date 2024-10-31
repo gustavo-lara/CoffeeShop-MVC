@@ -48,7 +48,7 @@ namespace CoffeeShop.Controllers
         // GET: ItemPedidos/Create
         public IActionResult Create()
         {
-            ViewData["ProdutoId"] = new SelectList(_context.Produto, "Id", "Id");
+            ViewData["ProdutoId"] = new SelectList(_context.Produto, "Id", "Nome");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace CoffeeShop.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProdutoId"] = new SelectList(_context.Produto, "Id", "Id", itemPedido.ProdutoId);
+            ViewData["ProdutoId"] = new SelectList(_context.Produto, "Id", "Nome", itemPedido.ProdutoId);
             return View(itemPedido);
         }
 
@@ -82,7 +82,7 @@ namespace CoffeeShop.Controllers
             {
                 return NotFound();
             }
-            ViewData["ProdutoId"] = new SelectList(_context.Produto, "Id", "Id", itemPedido.ProdutoId);
+            ViewData["ProdutoId"] = new SelectList(_context.Produto, "Id", "Nome", itemPedido.ProdutoId);
             return View(itemPedido);
         }
 
@@ -118,7 +118,7 @@ namespace CoffeeShop.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProdutoId"] = new SelectList(_context.Produto, "Id", "Id", itemPedido.ProdutoId);
+            ViewData["ProdutoId"] = new SelectList(_context.Produto, "Id", "Nome", itemPedido.ProdutoId);
             return View(itemPedido);
         }
 

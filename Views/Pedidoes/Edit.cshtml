@@ -1,44 +1,134 @@
 ﻿@model CoffeeShop.Models.Pedido
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Pedido";
 }
 
-<h1>Edit</h1>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-brown text-white py-3">
+                    <h4 class="card-title mb-0">
+                        <i class="fas fa-receipt me-2"></i>Editar Pedido
+                    </h4>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Edit" class="needs-validation" novalidate>
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                        <input type="hidden" asp-for="Id" />
 
-<h4>Pedido</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="DataEmissao" class="control-label"></label>
-                <input asp-for="DataEmissao" class="form-control" />
-                <span asp-validation-for="DataEmissao" class="text-danger"></span>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="DataEmissao" class="form-control" placeholder="Data de Emissão" />
+                                    <label asp-for="DataEmissao">
+                                        <i class="fas fa-calendar-alt text-muted me-1"></i> Data de Emissão
+                                    </label>
+                                    <span asp-validation-for="DataEmissao" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="ValorTotal" class="form-control" placeholder="Valor Total" />
+                                    <label asp-for="ValorTotal">
+                                        <i class="fas fa-dollar-sign text-muted me-1"></i> Valor Total
+                                    </label>
+                                    <span asp-validation-for="ValorTotal" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <select asp-for="ClienteId" class="form-select" asp-items="ViewBag.ClienteId">
+                                        <option value="">Selecione um Cliente</option>
+                                    </select>
+                                    <label asp-for="ClienteId">
+                                        <i class="fas fa-user text-muted me-1"></i> Cliente
+                                    </label>
+                                    <span asp-validation-for="ClienteId" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <select asp-for="ProdutoId" class="form-select" asp-items="ViewBag.ProdutoId">
+                                        <option value="">Selecione um Produto</option>
+                                    </select>
+                                    <label asp-for="ProdutoId">
+                                        <i class="fas fa-box text-muted me-1"></i> Produto
+                                    </label>
+                                    <span asp-validation-for="ProdutoId" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-save me-2"></i>Salvar Alterações
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary btn-lg">
+                                <i class="fas fa-arrow-left me-2"></i>Voltar
+                            </a>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ValorTotal" class="control-label"></label>
-                <input asp-for="ValorTotal" class="form-control" />
-                <span asp-validation-for="ValorTotal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ClienteId" class="control-label"></label>
-                <select asp-for="ClienteId" class="form-control" asp-items="ViewBag.ClienteId"></select>
-                <span asp-validation-for="ClienteId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<style>
+    .bg-brown {
+        background-color: #6F4E37;
+    }
+
+    .text-brown {
+        color: #6F4E37;
+    }
+
+    .btn-primary {
+        background-color: #6F4E37;
+        border-color: #6F4E37;
+    }
+
+        .btn-primary:hover {
+            background-color: #5D4037;
+            border-color: #5D4037;
+        }
+
+    .form-control:focus {
+        border-color: #6F4E37;
+        box-shadow: 0 0 0 0.25rem rgba(111, 78, 55, 0.25);
+    }
+
+    .form-floating > label {
+        padding-left: 1.75rem;
+    }
+
+    .card {
+        border: none;
+        border-radius: 1rem;
+    }
+
+    .card-header {
+        border-bottom: 1px solid rgba(0,0,0,.125);
+        border-top-left-radius: 1rem !important;
+        border-top-right-radius: 1rem !important;
+    }
+</style>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('[asp-for="DataEmissao"]').mask("00/00/0000");
+            $('[asp-for="ValorTotal"]').mask("#.##0,00", { reverse: true });
+        });
+    </script>
 }

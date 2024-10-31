@@ -1,59 +1,96 @@
 ﻿@model IEnumerable<CoffeeShop.Models.Produto>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Produtos";
 }
 
-<h1>Index</h1>
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-4 text-brown">Nossos Produtos</h1>
+        <a asp-action="Create" class="btn btn-primary btn-lg shadow-sm">
+            <i class="fas fa-plus-circle"></i> Novo Produto
+        </a>
+    </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descricao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Preco)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.QuantidadeEstoque)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fornecedor)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descricao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Preco)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuantidadeEstoque)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fornecedor.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+    <div class="row g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm hover-card">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">
+                            <i class="fas fa-mug-hot me-2"></i> @item.Nome
+                        </h5>
+                        <p class="card-text text-muted">
+                            @item.Descricao
+                        </p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-tag text-muted me-2"></i> Preço: @item.Preco.ToString("C")
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-boxes text-muted me-2"></i> Estoque: @item.QuantidadeEstoque
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-industry text-muted me-2"></i> Fornecedor: @item.Fornecedor.CNPJ
+                            </li>
+                        </ul>
+
+                        <div class="d-flex gap-2 mt-3">
+                            <a asp-action="Edit" asp-route-id="@item.Id"
+                               class="btn btn-outline-primary btn-sm flex-fill">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+                            <a asp-action="Details" asp-route-id="@item.Id"
+                               class="btn btn-outline-info btn-sm flex-fill">
+                                <i class="fas fa-info-circle"></i> Detalhes
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@item.Id"
+                               class="btn btn-outline-danger btn-sm flex-fill"
+                               onclick="return confirm('Tem certeza que deseja deletar este produto?');">
+                                <i class="fas fa-trash"></i> Deletar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .text-brown {
+        color: #6F4E37;
+    }
+
+    .hover-card {
+        transition: transform 0.2s ease-in-out;
+    }
+
+        .hover-card:hover {
+            transform: translateY(-5px);
+        }
+
+    .btn-primary {
+        background-color: #6F4E37;
+        border-color: #6F4E37;
+    }
+
+        .btn-primary:hover {
+            background-color: #5D4037;
+            border-color: #5D4037;
+        }
+
+    .text-primary {
+        color: #6F4E37 !important;
+    }
+
+    .list-unstyled li {
+        display: flex;
+        align-items: center;
+    }
+</style>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 }
-    </tbody>
-</table>

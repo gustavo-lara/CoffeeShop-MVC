@@ -22,7 +22,7 @@ namespace CoffeeShop.Controllers
         // GET: Pedidoes
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Pedido.Include(p => p.Cliente);
+            var applicationDbContext = _context.Pedido.Include(p => p.Cliente).Include(p => p.Produto);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -36,6 +36,7 @@ namespace CoffeeShop.Controllers
 
             var pedido = await _context.Pedido
                 .Include(p => p.Cliente)
+                .Include(p => p.Produto)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (pedido == null)
             {
@@ -48,7 +49,8 @@ namespace CoffeeShop.Controllers
         // GET: Pedidoes/Create
         public IActionResult Create()
         {
-            ViewData["ClienteId"] = new SelectList(_context.Cliente, "Id", "Id");
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "Id", "CPF");
+            ViewData["ProdutoId"] = new SelectList(_context.Produto, "Id", "Nome");
             return View();
         }
 
@@ -57,7 +59,7 @@ namespace CoffeeShop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,DataEmissao,ValorTotal,ClienteId")] Pedido pedido)
+        public async Task<IActionResult> Create([Bind("Id,DataEmissao,ValorTotal,ClienteId,ProdutoId")] Pedido pedido)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +68,8 @@ namespace CoffeeShop.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_context.Cliente, "Id", "Id", pedido.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "Id", "CPF", pedido.ClienteId);
+            ViewData["ProdutoId"] = new SelectList(_context.Produto, "Id", "Nome", pedido.ProdutoId);
             return View(pedido);
         }
 
@@ -83,7 +86,8 @@ namespace CoffeeShop.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClienteId"] = new SelectList(_context.Cliente, "Id", "Id", pedido.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "Id", "CPF", pedido.ClienteId);
+            ViewData["ProdutoId"] = new SelectList(_context.Produto, "Id", "Nome", pedido.ProdutoId);
             return View(pedido);
         }
 
@@ -92,7 +96,7 @@ namespace CoffeeShop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,DataEmissao,ValorTotal,ClienteId")] Pedido pedido)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,DataEmissao,ValorTotal,ClienteId,ProdutoId")] Pedido pedido)
         {
             if (id != pedido.Id)
             {
@@ -119,7 +123,8 @@ namespace CoffeeShop.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_context.Cliente, "Id", "Id", pedido.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "Id", "CPF", pedido.ClienteId);
+            ViewData["ProdutoId"] = new SelectList(_context.Produto, "Id", "Nome", pedido.ProdutoId);
             return View(pedido);
         }
 
@@ -133,6 +138,7 @@ namespace CoffeeShop.Controllers
 
             var pedido = await _context.Pedido
                 .Include(p => p.Cliente)
+                .Include(p => p.Produto)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (pedido == null)
             {

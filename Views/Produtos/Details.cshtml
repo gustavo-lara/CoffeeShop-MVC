@@ -1,48 +1,101 @@
 ﻿@model CoffeeShop.Models.Produto
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes do Produto";
 }
 
-<h1>Details</h1>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-brown text-white py-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="card-title mb-0">
+                            <i class="fas fa-box me-2"></i>Detalhes do Produto
+                        </h4>
+                    </div>
+                </div>
 
-<div>
-    <h4>Produto</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Descricao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Descricao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Preco)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Preco)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.QuantidadeEstoque)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.QuantidadeEstoque)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Fornecedor)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Fornecedor.Id)
-        </dd>
-    </dl>
+                <div class="card-body p-4">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="detail-item">
+                                <div class="detail-label">
+                                    <i class="fas fa-tag text-brown me-2"></i>Nome
+                                </div>
+                                <div class="detail-value">@Model.Nome</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="detail-item">
+                                <div class="detail-label">
+                                    <i class="fas fa-info-circle text-brown me-2"></i>Descrição
+                                </div>
+                                <div class="detail-value">@Model.Descricao</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="detail-item">
+                                <div class="detail-label">
+                                    <i class="fas fa-dollar-sign text-brown me-2"></i>Preço
+                                </div>
+                                <div class="detail-value">R$ @Model.Preco</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="detail-item">
+                                <div class="detail-label">
+                                    <i class="fas fa-boxes text-brown me-2"></i>Quantidade em Estoque
+                                </div>
+                                <div class="detail-value">@Model.QuantidadeEstoque</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="detail-item">
+                                <div class="detail-label">
+                                    <i class="fas fa-industry text-brown me-2"></i>Fornecedor (CNPJ)
+                                </div>
+                                <div class="detail-value">@Model.Fornecedor.CNPJ</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2 mt-4">
+                        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">
+                            <i class="fas fa-edit me-2"></i>Editar Produto
+                        </a>
+                        <a asp-action="Index" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Voltar para Lista
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+<style>
+    .bg-brown {
+        background-color: #6F4E37;
+    }
+
+    .text-brown {
+        color: #6F4E37;
+    }
+
+    .btn-primary {
+        background-color: #6F4E37;
+        border-color: #6F4E37;
+    }
+
+        .btn-primary:hover {
+            background-color: #5D4037;
+            border-color: #5D4037;
+        }
+
+    .detail-item {
+        background-color: #f8f9fa;

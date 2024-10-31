@@ -2,7 +2,79 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- Banner de Boas-vindas -->
+<div class="container-fluid p-5 bg-coffee text-white text-center" style="background-color: #6F4E37;">
+    <h1 class="display-4">Bem-vindo ao CoffeeShop</h1>
+    <p class="lead">Administre sua cafeteria com facilidade e eficiência</p>
 </div>
+
+<!-- Seção Principal -->
+<div class="container mt-5">
+    <!-- Seção de Introdução -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h2>Sobre o CoffeeShop</h2>
+            <p>Este sistema foi desenvolvido para facilitar a administração de cafeterias. Aqui, você pode gerenciar pedidos, produtos, clientes e fornecedores de forma integrada, garantindo uma operação eficiente e organizada.</p>
+        </div>
+    </div>
+
+    <!-- Seção de Funcionalidades (Somente para Usuários Logados) -->
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="row text-center">
+            <div class="col-md-3 mb-3">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Gerenciar Pedidos</h5>
+                        <p class="card-text">Visualize e controle todos os pedidos dos seus clientes.</p>
+                        <a href="/Pedidoes/Index" class="btn btn-primary">Ver Pedidos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Produtos</h5>
+                        <p class="card-text">Atualize, edite e visualize o menu de produtos disponíveis.</p>
+                        <a href="/Produtos/Index" class="btn btn-primary">Gerenciar Produtos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Clientes</h5>
+                        <p class="card-text">Acesse informações e histórico de seus clientes.</p>
+                        <a href="/Clientes/Index" class="btn btn-primary">Ver Clientes</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Fornecedores</h5>
+                        <p class="card-text">Gerencie os dados e parcerias com fornecedores.</p>
+                        <a href="/Fornecedores/Index" class="btn btn-primary">Ver Fornecedores</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="text-center mt-4">
+            <p class="text-muted">Faça login para acessar as funcionalidades de gerenciamento.</p>
+        </div>
+    }
+
+    <!-- Rodapé com Mensagem de Motivação -->
+    <div class="text-center mt-5">
+        <p class="text-muted">...</p>
+    </div>
+</div>
+
+<style>
+    .bg-coffee {
+        background-color: #6F4E37;
+    }
+</style>

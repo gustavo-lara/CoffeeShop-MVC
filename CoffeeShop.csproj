@@ -15,13 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\ItemVendasController.cs" />
-    <Compile Remove="Controllers\VendaProdutosController.cs" />
-    <Compile Remove="Controllers\Vendas1Controller.cs" />
-    <Compile Remove="Controllers\Vendas2Controller.cs" />
-    <Compile Remove="Controllers\Vendas3Controller.cs" />
-    <Compile Remove="Controllers\Vendas4Controller.cs" />
-    <Compile Remove="Controllers\VendasController.cs" />
     <Compile Remove="Models\Class.cs" />
     <Compile Remove="Models\ItemVenda.cs" />
     <Compile Remove="Models\Venda.cs" />
@@ -30,9 +23,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.7" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
