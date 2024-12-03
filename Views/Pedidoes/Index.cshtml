@@ -23,7 +23,7 @@
                         </h5>
                         <ul class="list-unstyled">
                             <li class="mb-2">
-                                <i class="fas fa-user text-muted me-2"></i> Cliente: @item.Cliente.CPF
+                                <i class="fas fa-user text-muted me-2"></i> Cliente: @item.Cliente.Nome
                             </li>
                             <li class="mb-2">
                                 <i class="fas fa-box text-muted me-2"></i> Produto: @item.Produto.Nome
@@ -53,6 +53,14 @@
             </div>
         }
     </div>
+    @if (!Model.Any())
+    {
+        <div class="text-center py-5">
+            <i class="fas fa-plus-circle text-muted mb-3" style="font-size: 3rem;"></i>
+            <h3 class="text-muted">Nenhum pedido cadastrado</h3>
+            <p class="text-muted">Clique no botão "Novo Pedido" para começar</p>
+        </div>
+    }
 </div>
 
 <style>
